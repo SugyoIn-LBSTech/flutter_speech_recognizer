@@ -8,9 +8,10 @@ class FlutterSpeechRecognizer {
 
   final Future<String> Function(String) _onResult;
 
-  Future onResult;
+  Future<String> onResult;
 
   FlutterSpeechRecognizer(this._onResult) {
+    onResult = _onResult;
     METHOD_CHANNEL.setMethodCallHandler(_methodCallHandler);
   }
 
@@ -22,7 +23,7 @@ class FlutterSpeechRecognizer {
   Future _methodCallHandler(MethodCall call) async {
     switch (call.method) {
       case 'onResult':
-        onResult = _onResult(call.arguments);
+        _onResult(call.arguments);
         break;
       default:
         throw ArgumentError.value(
