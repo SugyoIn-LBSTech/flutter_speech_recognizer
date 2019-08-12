@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/services.dart';
@@ -6,12 +7,11 @@ class FlutterSpeechRecognizer {
   static const MethodChannel METHOD_CHANNEL =
       const MethodChannel('flutter_speech_recognizer');
 
-  final Future<String> Function(String) _onResult;
+  final Completer<String> transcription = Completer();
 
-  Future<String> onResult;
+  final Function(String) onResult;
 
-  FlutterSpeechRecognizer(this._onResult) {
-    onResult = _onResult;
+  FlutterSpeechRecognizer({this.onResult}) {
     METHOD_CHANNEL.setMethodCallHandler(_methodCallHandler);
   }
 
@@ -23,7 +23,9 @@ class FlutterSpeechRecognizer {
   Future _methodCallHandler(MethodCall call) async {
     switch (call.method) {
       case 'onResult':
-        _onResult(call.arguments);
+        String result = call.arguments;
+        if (onResult != null) onResult(result);
+        transcription.complete(result);
         break;
       default:
         throw ArgumentError.value(
