@@ -14,7 +14,7 @@
 pubspec.yaml의 dependencies에 아래부분 추가.
 
 ```
-tmap_flutter:
+flutter_speech_recognizer:
   git: https://github.com/SugyoIn-LBSTech/flutter_speech_recognizer.git
   ref: v0.1.0
 ```
