@@ -1,14 +1,18 @@
 # flutter_speech_recognizer
 
-A new Flutter plugin.
+간단한 음성 인식 플러그인.
 
-## Getting Started
+## v0.1.0
+ - Locale 세팅.
+ - 음성 인식 결과 반환.
+ 
+## 지원 OS
+ - AOS
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+## 프로젝트에 적용 방법
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+pubspec.yaml의 dependencies에 아래부분 추가.
+
+tmap_flutter:
+  git: https://github.com/SugyoIn-LBSTech/flutter_speech_recognizer.git
+  ref: v0.1.0
