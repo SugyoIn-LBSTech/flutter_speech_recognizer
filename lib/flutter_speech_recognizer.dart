@@ -6,9 +6,11 @@ class FlutterSpeechRecognizer {
   static const MethodChannel METHOD_CHANNEL =
       const MethodChannel('flutter_speech_recognizer');
 
-  final Function(String) onResult;
+  final Future<String> Function(String) _onResult;
 
-  FlutterSpeechRecognizer(this.onResult) {
+  Future onResult;
+
+  FlutterSpeechRecognizer(this._onResult) {
     METHOD_CHANNEL.setMethodCallHandler(_methodCallHandler);
   }
 
@@ -20,7 +22,7 @@ class FlutterSpeechRecognizer {
   Future _methodCallHandler(MethodCall call) async {
     switch (call.method) {
       case 'onResult':
-        onResult(call.arguments);
+        onResult = _onResult(call.arguments);
         break;
       default:
         throw ArgumentError.value(
