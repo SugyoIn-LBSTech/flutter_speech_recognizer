@@ -19,7 +19,7 @@ class FlutterSpeechRecognizerPlugin(
     companion object {
         @JvmStatic
         fun registerWith(registrar: Registrar) {
-            val channel = MethodChannel(registrar.messenger(), "flutter_speech_recognizer")
+            val channel = MethodChannel(registrar.messenger(), "net.lbstech.flutter_speech_recognizer")
             channel.setMethodCallHandler(FlutterSpeechRecognizerPlugin(registrar.context(), channel))
         }
     }
