@@ -33,7 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
       print(error);
       print(stackTrace);
     });
-    _speechRecognizer = FlutterSpeechRecognizer(_onResult);
+    _speechRecognizer = FlutterSpeechRecognizer();
   }
 
   @override
