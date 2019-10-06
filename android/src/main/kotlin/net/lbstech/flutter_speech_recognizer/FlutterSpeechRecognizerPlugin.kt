@@ -72,21 +72,21 @@ class FlutterSpeechRecognizerPlugin(
 
     override fun onError(errorCode: Int) {
         when (errorCode) {
-            1 -> mMethodChannel.invokeMethod("onError", { "code" to errorCode; "message" to "ERROR_NETWORK_TIMEOUT" })
-            2 -> mMethodChannel.invokeMethod("onError", { "code" to errorCode; "message" to "ERROR_NETWORK" })
-            3 -> mMethodChannel.invokeMethod("onError", { "code" to errorCode; "message" to "ERROR_SERVER" })
-            4 -> mMethodChannel.invokeMethod("onError", { "code" to errorCode; "message" to "ERROR_CLIENT" })
-            5 -> mMethodChannel.invokeMethod("onError", { "code" to errorCode; "message" to "ERROR_CLIENT" })
-            6 -> mMethodChannel.invokeMethod("onError", { "code" to errorCode; "message" to "ERROR_SPEECH_TIMEOUT" })
-            7 -> mMethodChannel.invokeMethod("onError", { "code" to errorCode; "message" to "ERROR_NO_MATCH" })
-            8 -> mMethodChannel.invokeMethod("onError", { "code" to errorCode; "message" to "ERROR_RECOGNIZER_BUSY" })
-            9 -> mMethodChannel.invokeMethod("onError", { "code" to errorCode; "message" to "ERROR_INSUFFICIENT_PERMISSIONS" })
+            1 -> mMethodChannel.invokeMethod("onError", mapOf("code" to errorCode, "message" to "ERROR_NETWORK_TIMEOUT"))
+            2 -> mMethodChannel.invokeMethod("onError", mapOf("code" to errorCode, "message" to "ERROR_NETWORK"))
+            3 -> mMethodChannel.invokeMethod("onError", mapOf("code" to errorCode, "message" to "ERROR_SERVER"))
+            4 -> mMethodChannel.invokeMethod("onError", mapOf("code" to errorCode, "message" to "ERROR_CLIENT"))
+            5 -> mMethodChannel.invokeMethod("onError", mapOf("code" to errorCode, "message" to "ERROR_CLIENT"))
+            6 -> mMethodChannel.invokeMethod("onError", mapOf("code" to errorCode, "message" to "ERROR_SPEECH_TIMEOUT"))
+            7 -> mMethodChannel.invokeMethod("onError", mapOf("code" to errorCode, "message" to "ERROR_NO_MATCH"))
+            8 -> mMethodChannel.invokeMethod("onError", mapOf("code" to errorCode, "message" to "ERROR_RECOGNIZER_BUSY"))
+            9 -> mMethodChannel.invokeMethod("onError", mapOf("code" to errorCode, "message" to "ERROR_INSUFFICIENT_PERMISSIONS"))
         }
     }
 
     override fun onResults(bundle: Bundle?) {
         bundle?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)?.let { results ->
-            mMethodChannel.invokeMethod("onResult", results[0] ?: "")
+            mMethodChannel.invokeMethod("onResult", results[0])
         }
     }
 
