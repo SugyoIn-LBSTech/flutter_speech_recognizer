@@ -86,7 +86,7 @@ class FlutterSpeechRecognizerPlugin(
 
     override fun onResults(bundle: Bundle?) {
         bundle?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)?.let { results ->
-            mMethodChannel.invokeMethod("onResult", results[0])
+            mMethodChannel.invokeMethod("onResult", results[0] ?: "")
         }
     }
 
