@@ -53,6 +53,11 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+    compileOptions {
+        sourceCompatibility = kotlin_version
+        targetCompatibility = kotlin_version
+    }
+    buildToolsVersion = '28.0.3'
 }
 
 flutter {
