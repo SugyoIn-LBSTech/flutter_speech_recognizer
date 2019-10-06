@@ -11,7 +11,9 @@ class FlutterSpeechRecognizer {
 
   final Function(String) onResult;
 
-  FlutterSpeechRecognizer({this.onResult}) {
+  final void Function(SpeechRecognizerException) onError;
+
+  FlutterSpeechRecognizer({this.onResult, this.onError}) {
     methodChannel.setMethodCallHandler(_methodCallHandler);
   }
 
