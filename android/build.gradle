@@ -1,5 +1,3 @@
-package android
-
 group 'net.lbstech.flutter_speech_recognizer'
 version '1.0-SNAPSHOT'
 
