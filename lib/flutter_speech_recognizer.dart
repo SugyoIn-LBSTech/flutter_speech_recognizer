@@ -25,7 +25,7 @@ class FlutterSpeechRecognizer {
 
   void listen() => methodChannel.invokeMethod('listen');
 
-  void destroy() => methodChannel.invokeMethod('destory');
+  void destroy() => methodChannel.invokeMethod('destroy');
 
   void stop() => methodChannel.invokeMethod('stop');
 
