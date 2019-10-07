@@ -9,7 +9,7 @@ class FlutterSpeechRecognizer {
 
   final Completer<String> transcription = Completer();
 
-  final Function(String) onResult;
+  final void Function(String) onResult;
 
   final void Function(SpeechRecognizerException) onError;
 
@@ -17,8 +17,11 @@ class FlutterSpeechRecognizer {
     methodChannel.setMethodCallHandler(_methodCallHandler);
   }
 
-  Future setLocale(Locale locale) =>
-      methodChannel.invokeMethod('setLocale', {'locale': locale.toString()});
+  Future setLocale(Locale locale) {
+    assert(locale != null, 'The locale is must not be null.');
+    return methodChannel
+        .invokeMethod('setLocale', {'locale': locale.toString()});
+  }
 
   void listen() => methodChannel.invokeMethod('listen');
 

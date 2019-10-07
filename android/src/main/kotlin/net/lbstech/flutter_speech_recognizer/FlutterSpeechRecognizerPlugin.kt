@@ -24,10 +24,6 @@ class FlutterSpeechRecognizerPlugin(
         }
     }
 
-    private enum class Error(val code: Int) {
-        ArgumentsIsNull(0)
-    }
-
     private val mSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(context).also { speechRecognizer ->
         speechRecognizer.setRecognitionListener(this)
     }
@@ -40,10 +36,8 @@ class FlutterSpeechRecognizerPlugin(
     override fun onMethodCall(call: MethodCall, result: Result) {
         when (call.method) {
             "setLocale" -> {
-                if (call.hasArgument("locale")) {
-                    mRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, call.argument<String>("locale"))
-                    result.success(null)
-                } else sendErrorWithResult(result, Error.ArgumentsIsNull)
+                mRecognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, call.argument<String>("locale"))
+                result.success(null)
             }
             "listen" -> mSpeechRecognizer.startListening(mRecognizerIntent)
             "stop" -> mSpeechRecognizer.stopListening()
@@ -89,7 +83,4 @@ class FlutterSpeechRecognizerPlugin(
             mMethodChannel.invokeMethod("onResult", results[0])
         }
     }
-
-    private fun sendErrorWithResult(result: Result, error: Error, detail: String? = null) =
-            result.error(error.code.toString(), error.toString(), detail)
 }
