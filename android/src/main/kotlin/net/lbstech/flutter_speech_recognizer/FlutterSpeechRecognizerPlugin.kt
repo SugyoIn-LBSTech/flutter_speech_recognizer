@@ -68,8 +68,8 @@ class FlutterSpeechRecognizerPlugin(
         when (errorCode) {
             1 -> mMethodChannel.invokeMethod("onError", mapOf("code" to errorCode, "message" to "ERROR_NETWORK_TIMEOUT"))
             2 -> mMethodChannel.invokeMethod("onError", mapOf("code" to errorCode, "message" to "ERROR_NETWORK"))
-            3 -> mMethodChannel.invokeMethod("onError", mapOf("code" to errorCode, "message" to "ERROR_SERVER"))
-            4 -> mMethodChannel.invokeMethod("onError", mapOf("code" to errorCode, "message" to "ERROR_CLIENT"))
+            3 -> mMethodChannel.invokeMethod("onError", mapOf("code" to errorCode, "message" to "ERROR_AUDIO"))
+            4 -> mMethodChannel.invokeMethod("onError", mapOf("code" to errorCode, "message" to "ERROR_SERVER"))
             5 -> mMethodChannel.invokeMethod("onError", mapOf("code" to errorCode, "message" to "ERROR_CLIENT"))
             6 -> mMethodChannel.invokeMethod("onError", mapOf("code" to errorCode, "message" to "ERROR_SPEECH_TIMEOUT"))
             7 -> mMethodChannel.invokeMethod("onError", mapOf("code" to errorCode, "message" to "ERROR_NO_MATCH"))
