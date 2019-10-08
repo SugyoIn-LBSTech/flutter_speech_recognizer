@@ -39,11 +39,12 @@ class FlutterSpeechRecognizer {
         transcription.complete(result);
         break;
       case 'onError':
-        if (onError != null) {
-          int errorCode = call.arguments['code'];
-          String message = call.arguments['message'];
-          onError(SpeechRecognizerException(errorCode, message));
-        }
+        SpeechRecognizerException error = SpeechRecognizerException(
+            call.arguments['code'], call.arguments['message']);
+        if (onError != null)
+          onError(error);
+        else
+          throw error;
         break;
       default:
         throw ArgumentError.value(
