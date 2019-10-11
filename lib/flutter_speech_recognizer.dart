@@ -5,9 +5,9 @@ import 'package:flutter/services.dart';
 
 class FlutterSpeechRecognizer {
   static const MethodChannel methodChannel =
-      const MethodChannel('net.lbstech.flutter_speech_recognizer');
+  const MethodChannel('net.lbstech.flutter_speech_recognizer');
 
-  final Completer<String> transcription = Completer();
+  final Completer<dynamic> transcription = Completer();
 
   final void Function(String) onResult;
 
@@ -43,12 +43,13 @@ class FlutterSpeechRecognizer {
             call.arguments['code'], call.arguments['message']);
         if (onError != null)
           onError(error);
-        else
-          throw error;
+        transcription.complete(error);
         break;
       default:
-        throw ArgumentError.value(
+        ArgumentError error = ArgumentError.value(
             call.method, 'FlutterSpeechRecognizer', 'Unknowm method');
+        transcription.complete(error);
+        break;
     }
   }
 }
