@@ -57,10 +57,11 @@ class FlutterSpeechRecognizer {
 class SpeechRecognizerException implements Exception {
   final int code;
   final String message;
+  final String transcription;
 
-  SpeechRecognizerException(this.code, this.message);
+  SpeechRecognizerException(this.code, this.message, this.transcription);
 
   @override
   String toString() =>
-      'Error on FlutterSpeechRecogizer. code: $code, message: $message';
+      'Error on FlutterSpeechRecogizer. code: $code, message: $message, transcription: $transcription';
 }
