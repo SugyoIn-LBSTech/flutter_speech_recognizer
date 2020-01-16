@@ -21,4 +21,5 @@ pubspec.yaml의 dependencies에 아래부분 추가.
 flutter_speech_recognizer:
   git:
     url: https://github.com/SugyoIn-LBSTech/flutter_speech_recognizer.git
+    ref: v1.0.0
 ```
